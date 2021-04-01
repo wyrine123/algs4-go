@@ -46,6 +46,24 @@ func (p *LinkListStack) Pop() string {
 	return item
 }
 
+// 删除尾节点
+func (p *LinkListStack) delLastNode() {
+	if p.isEmpty() {
+		return
+	}
+	if p.Size() == 1 {
+		p.first = nil
+		p.n--
+		return
+	}
+	for item := p.first; item != nil; item = item.next {
+		if item.next.next == nil {
+			item.next = nil
+			p.n--
+		}
+	}
+}
+
 // size
 func (p *LinkListStack) Size() int {
 	return p.n
