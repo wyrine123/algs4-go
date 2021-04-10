@@ -108,3 +108,20 @@ func TestSinglyLinkedList_Del(t *testing.T) {
 	}
 	fmt.Println(l.String())
 }
+
+// 测试单链的find方法
+func TestSinglyLinkedList_Find(t *testing.T) {
+	l := NewSinglyLinkedList()
+	if l.Find("1") != false {
+		t.Error("测试单链的find方法 在空的链表内寻找1 失败")
+	}
+	l.Insert("1")
+	if l.Find("1") != true {
+		t.Error("测试单链的find方法 在空的链表内寻找1 失败")
+	}
+	l.Insert("2")
+	l.Insert("3")
+	if l.Find("2") != true {
+		t.Error("测试单链的find方法 在空的链表内寻找2 失败")
+	}
+}

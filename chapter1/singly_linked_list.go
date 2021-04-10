@@ -102,6 +102,16 @@ func (p *SinglyLinkedList) Del(k int) *Node {
 	return delNode
 }
 
+// Find 查询item是否在链表内
+func (p *SinglyLinkedList) Find(item string) bool {
+	for t := p.first; t != nil; t = t.next {
+		if t.item == item {
+			return true
+		}
+	}
+	return false
+}
+
 // 链表是否为空
 func (p *SinglyLinkedList) isEmpty() bool {
 	return p.n == 0

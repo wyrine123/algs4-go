@@ -27,31 +27,4 @@ func TestNewLinkListStack(t *testing.T) {
 	if stack.Size() != 0 {
 		t.Error("TestNewLinkListStack stack size不是0")
 	}
-
-	stack.delLastNode()
-	if stack.Size() != 0 {
-		t.Error("TestNewLinkListStack stack size不是0")
-	}
-	stack.Push("1")
-	stack.delLastNode()
-	if stack.Size() != 0 {
-		t.Error("TestNewLinkListStack stack size不是0")
-	}
-	stack.Push("1")
-	stack.Push("2")
-	stack.Push("3")
-
-	stack.delLastNode()
-	if stack.Size() != 2 {
-		t.Error("TestNewLinkListStack stack size不是2")
-	}
-	if stack.Pop() != "3" {
-		t.Error("TestNewLinkListStack stack pop不是3")
-	}
-	if stack.Pop() != "2" {
-		t.Error("TestNewLinkListStack stack pop不是2")
-	}
-	if stack.Size() != 0 {
-		t.Error("TestNewLinkListStack stack size不是0")
-	}
 }
