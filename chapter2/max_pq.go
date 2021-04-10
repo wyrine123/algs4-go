@@ -39,9 +39,9 @@ func (p *maxPQ) DelMax() int {
 	max := p.pq[1]
 	// 把最后数移到第一个
 	p.pq[1] = p.pq[p.n]
-	p.n--
 	p.sink(1)
 	p.pq = p.pq[:p.n]
+	p.n--
 	return max
 }
 

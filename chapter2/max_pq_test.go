@@ -32,4 +32,5 @@ func TestMaxPQ(t *testing.T) {
 	if maxPQ.DelMax() != 1 {
 		t.Error("maxPQ  DelMax不是1")
 	}
+	fmt.Println(maxPQ.String())
 }
