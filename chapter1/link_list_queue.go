@@ -5,8 +5,8 @@ package chapter1
 */
 
 type LinkListQueue struct {
-	first *node // 队头 保存最早进队列的数据
-	last  *node // 队尾 保存最后进队列的数据
+	first *Node // 队头 保存最早进队列的数据
+	last  *Node // 队尾 保存最后进队列的数据
 	n     int   // 队列长度
 }
 
@@ -21,7 +21,7 @@ func NewLinkListQueue() *LinkListQueue {
 
 // 入队
 func (p *LinkListQueue) Enqueue(s string) {
-	node := new(node)
+	node := new(Node)
 	node.item = s
 	if p.isEmpty() {
 		// 队列为空,首尾节点都指向该节点

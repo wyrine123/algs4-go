@@ -3,18 +3,18 @@ package chapter1
 /**
   使用链表实现stack
 	链表是一种递归的数据结构
-      它为空(null),或者是指向一个节点(node)的引用,该节点包括一个元素和一个指向另一条链表的引用
+      它为空(null),或者是指向一个节点(Node)的引用,该节点包括一个元素和一个指向另一条链表的引用
 */
 
 type LinkListStack struct {
-	first *node // 首节点 这儿要使用指针,这样就可以判断==nil
+	first *Node // 首节点 这儿要使用指针,这样就可以判断==nil
 	n     int   // 栈长度
 }
 
 // 节点
-type node struct {
+type Node struct {
 	item string // 节点值
-	next *node  // next node
+	next *Node  // next Node
 }
 
 func NewLinkListStack() *LinkListStack {
@@ -28,7 +28,7 @@ func NewLinkListStack() *LinkListStack {
 // push
 func (p *LinkListStack) Push(s string) {
 	oldFirst := p.first
-	node := new(node)
+	node := new(Node)
 	node.item = s
 	node.next = oldFirst
 	p.first = node
@@ -44,24 +44,6 @@ func (p *LinkListStack) Pop() string {
 	p.first = p.first.next
 	p.n--
 	return item
-}
-
-// 删除尾节点
-func (p *LinkListStack) delLastNode() {
-	if p.isEmpty() {
-		return
-	}
-	if p.Size() == 1 {
-		p.first = nil
-		p.n--
-		return
-	}
-	for item := p.first; item != nil; item = item.next {
-		if item.next.next == nil {
-			item.next = nil
-			p.n--
-		}
-	}
 }
 
 // size
