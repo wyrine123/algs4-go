@@ -52,6 +52,34 @@ func SingleLinkListHeaderInsert(header *Node, val int) *Node {
 	return node
 }
 
+// SingleLinkListHeaderTailInsert 单链尾插
+func SingleLinkListHeaderTailInsert(header *Node, val int) *Node {
+	// 找到最后一个节点
+	var lastNode *Node
+	for node := header; node != nil; node = node.Next {
+		lastNode = node
+	}
+	newNode := new(Node)
+	newNode.Val = val
+
+	if lastNode != nil {
+		lastNode.Next = newNode
+		return header
+	} else {
+		// 没有最后一个节点 头插
+		return SingleLinkListHeaderInsert(header, val)
+	}
+}
+
+// SingleLinkListHeaderDelete 单链头删
+func SingleLinkListHeaderDelete(header *Node) *Node {
+	if header == nil {
+		return header
+	}
+	header = header.Next
+	return header
+}
+
 // SingleLinkListInsert 单链在第i个位置插入
 func SingleLinkListInsert(header *Node, i int, val int) *Node {
 	if i <= 0 {

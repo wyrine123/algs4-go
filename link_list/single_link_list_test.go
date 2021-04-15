@@ -31,6 +31,21 @@ func TestSingleLinkListHeaderInsert(t *testing.T) {
 	PrintLinkList(SingleLinkListHeaderInsert(header, -1))
 }
 
+// 测试单链尾插
+func TestSingleLinkListHeaderTailInsert(t *testing.T) {
+	nums := []int{1, 2}
+	header := InitSingleLinkList(nums)
+	PrintLinkList(SingleLinkListHeaderTailInsert(header, -1))
+}
+
+// 测试单链头删
+func TestSingleLinkListHeaderDelete(t *testing.T) {
+	nums := []int{3}
+	header := InitSingleLinkList(nums)
+	PrintLinkList(SingleLinkListHeaderDelete(header))
+
+}
+
 // 测试单链位置插入
 func TestSingleLinkListInsert(t *testing.T) {
 	nums := []int{2, 3}
