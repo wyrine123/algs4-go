@@ -26,6 +26,20 @@ func InitSingleLinkList(nums []int) *Node {
 	return header
 }
 
+// ReverseInitSingleLinkList 逆序构造单链
+func ReverseInitSingleLinkList(nums []int) *Node {
+	// stack 头插方式
+	var header *Node
+	for _, i := range nums {
+		oldHeader := header
+		node := new(Node)
+		node.Val = i
+		node.Next = oldHeader
+		header = node
+	}
+	return header
+}
+
 // SingleLinkListHeaderInsert 单链头插
 func SingleLinkListHeaderInsert(header *Node, val int) *Node {
 	// 保存原先的头节点
@@ -40,13 +54,45 @@ func SingleLinkListHeaderInsert(header *Node, val int) *Node {
 
 // SingleLinkListInsert 单链在第i个位置插入
 func SingleLinkListInsert(header *Node, i int, val int) *Node {
+	if i <= 0 {
+		return header
+	}
 	if i == 1 {
 		// 头插
 		return SingleLinkListHeaderInsert(header, val)
 	}
-	// 其他位置插入
-	// todo
-	return nil
+	// 其他位置插入 需要找到该位置的前置节点
+	prev := new(Node)
+	node := header
+	for j := 1; j < i; j++ {
+		prev = node
+		if node != nil {
+			node = node.Next
+		}
+	}
+	if prev == nil {
+		// 没到i位置,链表就结束了
+		return header
+	}
+	insertNode := new(Node)
+	insertNode.Val = val
+	insertNode.Next = prev.Next
+	prev.Next = insertNode
+	return header
+}
+
+// SingleLinkListReverse 单链逆序
+func SingleLinkListReverse(header *Node) *Node {
+	// 头插 实现逆序
+	var reverseLinkListHeader *Node
+	for node := header; node != nil; node = node.Next {
+		oldHeader := reverseLinkListHeader
+		newNode := new(Node)
+		newNode.Val = node.Val
+		newNode.Next = oldHeader
+		reverseLinkListHeader = newNode
+	}
+	return reverseLinkListHeader
 }
 
 // PrintLinkList 打印输出链表
