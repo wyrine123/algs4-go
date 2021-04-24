@@ -6,14 +6,16 @@ package main
 */
 
 type unionFind struct {
-	nums   []int // 数据
-	weight []int // 权重
+	nums      []int // 数据
+	weight    []int // 权重
+	podsCount int   // 节点数量
 }
 
 func NewUnionFind(count int) *unionFind {
 	u := new(unionFind)
 	u.nums = make([]int, count, count)
 	u.weight = make([]int, count, count)
+	u.podsCount = count
 
 	for i := 0; i < count; i++ {
 		u.nums[i] = i
@@ -41,6 +43,7 @@ func (p *unionFind) union(i, j int) {
 		p.nums[iRoot] = jRoot
 		p.weight[jRoot] += p.weight[iRoot]
 	}
+	p.podsCount--
 }
 
 func (p *unionFind) find(i int) int {
@@ -53,14 +56,7 @@ func (p *unionFind) find(i int) int {
 
 // 找到分割后的节点数量
 func (p *unionFind) findPods() int {
-	// 只要找到 p.num[i]==i 的数量就行
-	count := 0
-	for i, v := range p.nums {
-		if i == v {
-			count++
-		}
-	}
-	return count
+	return p.podsCount
 }
 
 func (p *unionFind) isConnect(i, j int) bool {
