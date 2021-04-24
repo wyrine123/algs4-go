@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /**
   两数相加
 	https://leetcode-cn.com/problems/add-two-numbers/
@@ -66,26 +64,4 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return l1
-}
-
-func main() {
-	l1 := new(ListNode)
-	l1.Val = 9
-	l1.Next = new(ListNode)
-	l1.Next.Val = 9
-	l1.Next.Next = new(ListNode)
-	l1.Next.Next.Val = 9
-
-	l2 := new(ListNode)
-	l2.Val = 9
-	//l2.Next = new(ListNode)
-	//l2.Next.Val = 6
-	//l2.Next.Next = new(ListNode)
-	//l2.Next.Next.Val = 7
-
-	result := addTwoNumbers(l2, l1)
-	for node := result; node != nil; node = node.Next {
-		fmt.Printf("%d\t", node.Val)
-	}
-	fmt.Println()
 }
