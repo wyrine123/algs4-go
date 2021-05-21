@@ -13,11 +13,6 @@ package main
  * }
  */
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func rotateRight(head *ListNode, k int) *ListNode {
 	/**
 	1. 先获取链表的长度length
