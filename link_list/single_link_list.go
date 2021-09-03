@@ -8,22 +8,17 @@ import "fmt"
 
 // InitSingleLinkList 初始化单链
 func InitSingleLinkList(nums []int) *Node {
-	if len(nums) == 0 {
-		return nil
-	}
-	// 初始化头节点
-	header := new(Node)
-	header.Val = nums[0]
+	var header = new(Node)
+	var last = header
 
-	// 记录最后一个节点
-	lastNode := header
-	for _, i := range nums[1:] {
+	for _, num := range nums {
 		node := new(Node)
-		node.Val = i
-		lastNode.Next = node
-		lastNode = node
+		node.Val = num
+		last.Next = node
+		last = node
 	}
-	return header
+
+	return header.Next
 }
 
 // ReverseInitSingleLinkList 逆序构造单链
