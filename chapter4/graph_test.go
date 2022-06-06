@@ -1,6 +1,9 @@
 package chapter4
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func newGraph() *Graph {
 	g := NewGraph(3)
@@ -52,6 +55,16 @@ func TestGraphNumberOfSelfLoops(t *testing.T) {
 
 func TestGraph_ToString(t *testing.T) {
 	g := newGraph()
+
+	t.Log(g.ToString())
+}
+
+func TestNewGraphFromFile(t *testing.T) {
+	f, err := os.Open("./data/tinyG.txt")
+	if err != nil {
+		t.Errorf("TestNewGraphFromFile open file 失败: %s", err.Error())
+	}
+	g := NewGraphFromFile(f)
 
 	t.Log(g.ToString())
 }

@@ -1,6 +1,10 @@
 package chapter4
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"strconv"
+)
 
 type Graph struct {
 	v   int            // 顶点数目(vertex)
@@ -22,9 +26,39 @@ func NewGraph(v int) *Graph {
 	return g
 }
 
-func NewGraphFromFile(filename string) *Graph {
-	// todo
-	return new(Graph)
+func NewGraphFromFile(in io.Reader) *Graph {
+	var (
+		v, e   int
+		v1, v2 int
+		//line string
+		g   *Graph
+		err error
+	)
+	// 第一行是顶点的数量
+	_, err = fmt.Fscan(in, &v)
+	if err != nil {
+		panic("NewGraphFromFile 读取顶点数量错误: " + err.Error())
+	}
+	g = NewGraph(v)
+	// 第二行是边的数量
+	_, err = fmt.Fscan(in, &e)
+	if err != nil {
+		panic("NewGraphFromFile 读取边数量错误: " + err.Error())
+	}
+
+	for i := 0; i < e; i++ {
+		_, err = fmt.Fscan(in, &v1)
+		if err != nil {
+			panic("NewGraphFromFile 第" + strconv.Itoa(i+1) + "行第一个数错误: " + err.Error())
+		}
+		_, err = fmt.Fscan(in, &v2)
+		if err != nil {
+			panic("NewGraphFromFile 第" + strconv.Itoa(i+1) + "行第二个数错误: " + err.Error())
+		}
+		g.AddEdge(v1, v2)
+	}
+
+	return g
 }
 
 func (g *Graph) V() int {
