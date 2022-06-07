@@ -21,7 +21,7 @@ func TestQueueLinkList(t *testing.T) {
 	if !q.IsEmpty() {
 		t.Error("TestQueueLinkList 队列DeQueue后不为空")
 	}
-	if v.(int) != 1 {
+	if *v != 1 {
 		t.Error("TestQueueLinkList 队列DeQueue值不为1")
 	}
 	t.Logf("TestQueueLinkList Enqueue 1后 Dequeue: %v", q.Iteration())

@@ -12,7 +12,7 @@ func NewQueueLinkList() *QueueLinkList {
 	return q
 }
 
-func (q *QueueLinkList) Enqueue(v interface{}) {
+func (q *QueueLinkList) Enqueue(v int) {
 	node := NewNode()
 	node.val = v
 	if q.IsEmpty() {
@@ -27,18 +27,20 @@ func (q *QueueLinkList) Enqueue(v interface{}) {
 	q.count++
 }
 
-func (q *QueueLinkList) Dequeue() interface{} {
-	var v interface{}
+func (q *QueueLinkList) Dequeue() *int {
+	var v *int
 	if q.IsEmpty() {
 		v = nil
 	} else if q.Size() == 1 {
 		// 需要处理root和tail
-		v = q.tail.val
+		value := q.tail.val.(int)
+		v = &value
 		q.tail = nil
 		q.root = nil
 	} else {
 		// 只需要处理tail
-		v = q.tail.val
+		value := q.tail.val.(int)
+		v = &value
 		q.tail = q.tail.prev
 		q.tail.next = nil
 	}
