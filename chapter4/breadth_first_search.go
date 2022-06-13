@@ -18,11 +18,11 @@ func NewBreadthFirstSearch(g *Graph, v int) *BreadthFirstSearch {
 func (s *BreadthFirstSearch) bfs(g *Graph, v int) {
 	s.countV++
 	s.queue.Enqueue(v)
+	s.markedV[v] = true
 	for w := s.queue.Dequeue(); w != nil; w = s.queue.Dequeue() {
-
 		for _, item := range g.Adj(*w) {
-			if !s.Marked(*w) {
-				s.markedV[*w] = true
+			if !s.Marked(item) {
+				s.markedV[item] = true
 				s.countV++
 				s.queue.Enqueue(item)
 			}
